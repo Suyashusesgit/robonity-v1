@@ -87,25 +87,31 @@
 /* ===== AUTH BUTTONS ===== */
 .auth-links {
     display: flex;
+    align-items: center; /* CRITICAL */
     gap: 12px;
 }
 
 .btn-login,
 .btn-signup,
 .btn-logout {
-    padding: 8px 16px;
+    height: 42px;              /* SAME HEIGHT */
+    padding: 0 18px;           /* Horizontal padding only */
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
     border-radius: 12px;
     font-size: 0.9rem;
     font-weight: 600;
-    cursor: pointer;
-    transition: all 0.3s ease;
+    line-height: 1;
+    box-sizing: border-box;
 }
 
 /* Login */
 .btn-login {
-    color: var(--text-color);
-    border: 1px solid var(--glass-border);
+    color: #ffffff;
     background: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.3);
 }
 
 .btn-login:hover {
@@ -115,9 +121,9 @@
 /* Signup */
 .btn-signup {
     color: #fff;
-    background: linear-gradient(135deg, #ff3b3b, #ff6a00);
-    border: none;
-    box-shadow: 0 0 18px rgba(255, 59, 59, 0.4);
+    background: linear-gradient(135deg, #00c6ff, #0072ff);
+    border: 1px solid transparent;   /* IMPORTANT */
+    box-shadow: 0 0 18px rgba(0, 198, 255, 0.45);
 }
 
 .btn-signup:hover {
@@ -185,3 +191,4 @@
         transform: translateY(0);
     }
 }
+
