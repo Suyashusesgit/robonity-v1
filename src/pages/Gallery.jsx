@@ -1,53 +1,123 @@
-import React from 'react';
-import GalleryItem from '../components/GalleryItem'; // We still need this
+import React, { useState } from 'react';
+import GalleryItem from '../components/GalleryItem';
+import "./Gallery.css";
 
 function Gallery() {
-  // We are back to using the original placeholder data
-  const galleryData = [
-    {
-      id: 1,
-      title: 'Autonomous Rover',
-      description: 'A student-built rover navigating an obstacle course.',
-      imageUrl: 'https://via.placeholder.com/400x250/007bff/ffffff?text=Rover+Project'
-    },
-    {
-      id: 2,
-      title: 'RoboSoccer 2025',
-      description: 'Our team competing in the finals.',
-      imageUrl: 'https://via.placeholder.com/400x250/28a745/ffffff?text=RoboSoccer'
-    },
-    {
-      id: 3,
-      title: '3D Printed Arm',
-      description: 'A 6-axis robotic arm prototype.',
-      imageUrl: 'https://via.placeholder.com/400x250/dc3545/ffffff?text=Robotic+Arm'
-    },
-    {
-      id: 4,
-      title: 'Workshop Day',
-      description: 'Members learning soldering and circuitry.',
-      imageUrl: 'https://via.placeholder.com/400x250/ffc107/000000?text=Workshop'
-    }
-  ];
+    const [filter, setFilter] = useState("All");
+    const [activeItem, setActiveItem] = useState(null);
 
-  return (
-    <div>
-      {/* We are removing the "Submit Project" button and header */}
-      <h1 className="page-header">Project Gallery</h1>
-      <p style={{marginBottom: '2rem'}}>A visual showcase of the amazing robots built by our community members.</p>
-      
-      <div className="gallery-grid">
-        {galleryData.map(item => (
-          <GalleryItem 
-            key={item.id}
-            title={item.title}
-            description={item.description}
-            imageUrl={item.imageUrl}
-          />
-        ))}
-      </div>
-    </div>
-  );
+    const galleryData = [
+        {
+            id: 1,
+            title: 'Autonomous Rover',
+            description: 'A student-built rover navigating an obstacle course.',
+            category: 'Robotics',
+            imageUrl: 'https://via.placeholder.com/400x250/007bff/ffffff?text=Rover+Project'
+        },
+        {
+            id: 2,
+            title: 'RoboSoccer 2025',
+            description: 'Our team competing in the finals.',
+            category: 'AI',
+            imageUrl: 'https://via.placeholder.com/400x250/28a745/ffffff?text=RoboSoccer'
+        },
+        {
+            id: 3,
+            title: '3D Printed Arm',
+            description: 'A 6-axis robotic arm prototype.',
+            category: 'Mechanical',
+            imageUrl: 'https://via.placeholder.com/400x250/dc3545/ffffff?text=Robotic+Arm'
+        },
+        {
+            id: 4,
+            title: 'Workshop Day',
+            description: 'Members learning soldering and circuitry.',
+            category: 'Robotics',
+            imageUrl: 'https://via.placeholder.com/400x250/ffc107/000000?text=Workshop'
+        },
+        {
+            id: 5,
+            title: 'Autonomous Rover',
+            description: 'A student-built rover navigating an obstacle course.',
+            category: 'Robotics',
+            imageUrl: 'https://via.placeholder.com/400x250/007bff/ffffff?text=Rover+Project'
+        },
+        {
+            id: 6,
+            title: 'RoboSoccer 2025',
+            description: 'Our team competing in the finals.',
+            category: 'AI',
+            imageUrl: 'https://via.placeholder.com/400x250/28a745/ffffff?text=RoboSoccer'
+        },
+        {
+            id: 7,
+            title: '3D Printed Arm',
+            description: 'A 6-axis robotic arm prototype.',
+            category: 'Mechanical',
+            imageUrl: 'https://via.placeholder.com/400x250/dc3545/ffffff?text=Robotic+Arm'
+        },
+        {
+            id: 8,
+            title: 'Workshop Day',
+            description: 'Members learning soldering and circuitry.',
+            category: 'Robotics',
+            imageUrl: 'https://via.placeholder.com/400x250/ffc107/000000?text=Workshop'
+        },
+        {
+            id: 9,
+            title: 'Workshop Day',
+            description: 'Members learning soldering and circuitry.',
+            category: 'Robotics',
+            imageUrl: 'https://via.placeholder.com/400x250/ffc107/000000?text=Workshop'
+        }
+    ];
+
+    const filteredData =
+        filter === "All"
+            ? galleryData
+            : galleryData.filter(item => item.category === filter);
+
+    return (
+        <div className="gallery-page">
+            <h1 className="page-header">Project Gallery</h1>
+            <p className="page-subtext">
+                A visual showcase of the amazing robots built by our community members.
+            </p>
+
+            {/* FILTERS */}
+            <div className="gallery-filters">
+                {["All", "Robotics", "AI", "Mechanical"].map(cat => (
+                    <button
+                        key={cat}
+                        className={filter === cat ? "active" : ""}
+                        onClick={() => setFilter(cat)}
+                    >
+                        {cat}
+                    </button>
+                ))}
+            </div>
+
+            {/* MASONRY GRID */}
+            <div className="gallery-masonry">
+                {filteredData.map(item => (
+                    <div key={item.id} onClick={() => setActiveItem(item)}>
+                        <GalleryItem {...item} />
+                    </div>
+                ))}
+            </div>
+
+            {/* LIGHTBOX */}
+            {activeItem && (
+                <div className="lightbox" onClick={() => setActiveItem(null)}>
+                    <div className="lightbox-content" onClick={e => e.stopPropagation()}>
+                        <img src={activeItem.imageUrl} alt={activeItem.title} />
+                        <h3>{activeItem.title}</h3>
+                        <p>{activeItem.description}</p>
+                    </div>
+                </div>
+            )}
+        </div>
+    );
 }
 
 export default Gallery;
