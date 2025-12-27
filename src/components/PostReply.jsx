@@ -16,25 +16,22 @@ function PostReply({ threadId }) {
       setError('Reply cannot be empty.');
       return;
     }
-    if (!currentUser || !currentUser.displayName) { // Check for displayName
+
+    if (!currentUser?.displayName) {
       setError('You must be logged in with a display name to reply.');
       return;
     }
 
     try {
-      // 1. Add the new reply
-      const repliesRef = collection(db, 'threads', threadId, 'replies');
-      await addDoc(repliesRef, {
-        text: text,
+      await addDoc(collection(db, 'threads', threadId, 'replies'), {
+        text,
         authorId: currentUser.uid,
-        authorName: currentUser.displayName, // <-- UPDATED
+        authorName: currentUser.displayName,
         createdAt: serverTimestamp(),
       });
 
-      // 2. Update the 'replies' count
-      const threadRef = doc(db, 'threads', threadId);
-      await updateDoc(threadRef, {
-        replies: increment(1)
+      await updateDoc(doc(db, 'threads', threadId), {
+        replies: increment(1),
       });
 
       setText('');
@@ -43,27 +40,24 @@ function PostReply({ threadId }) {
       console.error(err);
     }
   };
-  
-  // (The rest of the return(...) JSX is the same)
-  // ...
-// ... rest of the file
+
   return (
-    <form className="post-reply-form" onSubmit={handleSubmit}>
-      <h3>Post a Reply</h3>
-      {error && <p className="auth-error">{error}</p>}
-      <div className="form-group">
+      <form className="post-reply-form" onSubmit={handleSubmit}>
+        <h3>Post a Reply</h3>
+
+        {error && <p className="auth-error">{error}</p>}
+
         <textarea
-          placeholder="Write your reply..."
-          value={text}
-          onChange={(e) => setText(e.target.value)}
-          required
-          rows="4"
-        ></textarea>
+            placeholder="Write your reply..."
+            value={text}
+            onChange={(e) => setText(e.target.value)}
+            rows="4"
+        />
+
         <button type="submit" className="new-thread-btn">
           Post Reply
         </button>
-      </div>
-    </form>
+      </form>
   );
 }
 

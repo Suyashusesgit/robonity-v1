@@ -1,5 +1,6 @@
 import React from 'react';
 import EventItem from '../components/EventItem'; // Import the new component
+import "./Events.css"
 
 function Events() {
 

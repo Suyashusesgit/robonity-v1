@@ -1,20 +1,32 @@
 import React from 'react';
 
-// Props will include: date, title, location, and description
+// Props: date (string like "SEP 06"), title, location, description
 function EventItem({ date, title, location, description }) {
-  return (
-    <div className="event-item">
-      <div className="event-date">
-        {/* We'll assume the date is a simple string for now */}
-        {date}
-      </div>
-      <div className="event-details">
-        <h3 className="event-title">{title}</h3>
-        <div className="event-location">{location}</div>
-        <p className="event-description">{description}</p>
-      </div>
-    </div>
-  );
+    // Split date safely (e.g., "SEP 06")
+    const [month, day] = date.split(" ");
+
+    return (
+        <div className="event-card">
+            {/* DATE STRIP */}
+            <div className="event-date">
+                <span className="event-month">{month}</span>
+                <span className="event-day">{day}</span>
+            </div>
+
+            {/* EVENT CONTENT */}
+            <div className="event-content">
+                <h3 className="event-title">{title}</h3>
+                <div className="event-venue">{location}</div>
+
+                <p className="event-description">{description}</p>
+
+                {/* CTA */}
+                <div className="event-actions">
+                    <button>View Details</button>
+                </div>
+            </div>
+        </div>
+    );
 }
 
 export default EventItem;

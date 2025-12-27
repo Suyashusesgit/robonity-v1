@@ -4,6 +4,7 @@ import { collection, query, orderBy, onSnapshot } from 'firebase/firestore';
 import { useAuth } from '../components/AuthContext';
 import ThreadItem from '../components/ThreadItem';
 import CreateThread from '../components/CreateThread';
+import "./Forum.css"
 
 function Forum() {
   const [threads, setThreads] = useState([]);
