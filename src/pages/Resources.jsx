@@ -1,5 +1,6 @@
 import React from 'react';
 import ResourceItem from '../components/ResourceItem'; // Import the component
+import "./Resources.css"
 
 function Resources() {
   

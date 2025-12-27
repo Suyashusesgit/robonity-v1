@@ -1,5 +1,6 @@
 import React from 'react';
 import RoboShareItem from '../components/RoboShareItem'; // Import the component
+import "./RoboShare.css"
 
 function RoboShare() {
   
