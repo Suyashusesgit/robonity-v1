@@ -3,7 +3,7 @@ import { NavLink, Link, useNavigate } from 'react-router-dom';
 import { useAuth } from './AuthContext'; // Import our new auth hook
 import { signOut } from 'firebase/auth'; // Import Firebase's sign out
 import { auth } from '../firebase'; // Import auth instance
-
+import './Navbar.css';
 // Logo component (no changes)
 const Logo = () => (
   <svg 
