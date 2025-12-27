@@ -1,0 +1,144 @@
+.auth-page {
+    min-height: calc(100vh - 120px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.auth-card {
+    width: 420px;
+    background: rgba(30, 41, 59, 0.7);
+    backdrop-filter: blur(16px);
+    padding: 2.5rem;
+    border-radius: 18px;
+    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.45);
+}
+
+.auth-card h1 {
+    text-align: center;
+    margin-bottom: 1.5rem;
+}
+
+.auth-error {
+    background: rgba(239, 68, 68, 0.15);
+    color: #fecaca;
+    padding: 0.75rem;
+    border-radius: 10px;
+    margin-bottom: 1rem;
+}
+
+/* SOCIAL */
+.social-auth button {
+    width: 100%;
+    margin-bottom: 0.6rem;
+    padding: 12px;
+    border-radius: 10px;
+    background: rgba(15, 23, 42, 0.9);
+    color: #e5e7eb;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    cursor: pointer;
+}
+
+.social-auth button:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+}
+
+.divider {
+    text-align: center;
+    margin: 1.2rem 0;
+    color: #94a3b8;
+}
+
+/* METHOD SWITCH */
+.method-switch {
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+    margin-bottom: 1rem;
+}
+
+.method-switch span {
+    cursor: pointer;
+    color: #94a3b8;
+}
+
+.method-switch .active {
+    color: #38bdf8;
+    font-weight: 600;
+}
+
+/* FORM */
+.auth-card input {
+    width: 100%;
+    padding: 13px;
+    margin-bottom: 0.8rem;
+    border-radius: 10px;
+    background: rgba(15, 23, 42, 0.85);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: #e5e7eb;
+}
+
+.auth-card button[type="submit"] {
+    width: 100%;
+    padding: 14px;
+    border-radius: 12px;
+    background: linear-gradient(135deg, #0ea5e9, #0284c7);
+    border: none;
+    font-weight: 600;
+    margin-top: 0.5rem;
+}
+
+/* OTP */
+.otp-box input {
+    width: 100%;
+    margin-bottom: 0.8rem;
+}
+
+/* SWITCH */
+.switch-text {
+    margin-top: 1.4rem;
+    text-align: center;
+    color: #94a3b8;
+}
+
+.switch-text span {
+    color: #38bdf8;
+    cursor: pointer;
+}
+/* OTP SECTION */
+.otp-box {
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+}
+
+/* Reusable input */
+.auth-input {
+    width: 100%;
+    padding: 13px;
+    border-radius: 10px;
+    background: rgba(15, 23, 42, 0.85);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: #e5e7eb;
+    font-size: 0.95rem;
+}
+
+/* Reusable primary button */
+.auth-submit {
+    width: 100%;
+    padding: 14px;
+    border-radius: 12px;
+    background: linear-gradient(135deg, #0ea5e9, #0284c7);
+    color: #020617;
+    border: none;
+    font-weight: 600;
+    cursor: pointer;
+    box-shadow: 0 10px 30px rgba(14, 165, 233, 0.35);
+    transition: all 0.25s ease;
+}
+
+.auth-submit:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 14px 36px rgba(14, 165, 233, 0.5);
+}
