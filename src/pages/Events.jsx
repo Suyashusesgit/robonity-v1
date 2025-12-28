@@ -1,51 +1,70 @@
-import React from 'react';
-import EventItem from '../components/EventItem'; // Import the new component
-import "./Events.css"
+import React from "react";
+import EventItem from "../components/EventItem";
+import "./Events.css";
 
 function Events() {
-
-  // A list of sample events
   const eventData = [
     {
       id: 1,
-      date: 'SEP 06',
-      title: 'CAD Workshop',
-      location: 'MPH-214',
-      description: 'Join us for a beginner-friendly workshop covering the basics of robotics, from simple circuits to programming a microcontroller.'
+      date: "TBA --",
+      title: "Gear Up 2026",
+      location: "Online Mode",
+      description: "Exclusive online sessions for the Domain Members.",
+      fullDetails:
+          "Mode: Online | Eligibility: Domain Members Only | Platform: Google Meet | Certificate Provided"
     },
     {
       id: 2,
-      date: 'OCT 31',
-      title: 'Robotics & E.D. Domain Intro Workshop',
-      location: 'Manthan',
-      description: 'Show us your skills! We are recruiting programmers, engineers, and strategists for the 2026 RoboSoccer competition team.'
+      date: "NOV 15",
+      title: "KickOff-2025 / RoboSoccer 1st Edition",
+      location: "Rajabaug",
+      description:
+          "A special lecture on the future of AI and its role in robotics competitions.",
+      fullDetails:
+          "Speaker: Dr. Eva Rostova | Time: 11:00 AM | Includes live demo & Q&A session"
     },
     {
       id: 3,
-      date: 'NOV 15',
-      title: 'KickOff-2025 / RoboSoccer 1st Edition',
-      location: 'Rajabaug',
-      description: 'A special lecture from Dr. Eva Rostova on the future of AI and its role in modern industrial automation.'
+      date: "OCT 31",
+      title: "Robotics & E.D. Domain Intro Workshop",
+      location: "Manthan",
+      description:
+          "We are recruiting programmers, engineers, and strategists for RoboSoccer 2026.",
+      fullDetails:
+          "Recruitment Drive | Open for FY & SY students | Bring your laptops | No prior experience required"
+    },
+    {
+      id: 4,
+      date: "SEP 06",
+      title: "CAD Workshop",
+      location: "MPH-214",
+      description:
+          "Beginner-friendly workshop covering CAD fundamentals for robotics.",
+      fullDetails:
+          "Software: Fusion 360 | Duration: 3 Hours | Certificate + Resources Provided"
     }
   ];
 
   return (
-    <div>
-      <h1 className="page-header">Events</h1>
-      <p style={{marginBottom: '2rem'}}>Check out our calendar for workshops, competitions, and meetups.</p>
+      <div className="events-page">
+        <h1 className="page-header">Events</h1>
+        <p className="page-subtitle">
+          Check out our calendar for workshops, competitions, and meetups.
+        </p>
 
-      <div className="event-list">
-        {eventData.map(event => (
-          <EventItem
-            key={event.id}
-            date={event.date}
-            title={event.title}
-            location={event.location}
-            description={event.description}
-          />
-        ))}
+        <div className="event-list">
+          {eventData.map(event => (
+              <EventItem
+                  key={event.id}
+                  date={event.date}
+                  title={event.title}
+                  location={event.location}
+                  description={event.description}
+                  fullDetails={event.fullDetails}
+              />
+          ))}
+        </div>
       </div>
-    </div>
   );
 }
 

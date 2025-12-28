@@ -2,7 +2,7 @@
    PAGE LAYOUT
 ========================= */
 .events-page {
-    padding: 96px 8% 80px;
+    padding: 1px 8% 80px;
 }
 
 /* =========================
@@ -228,4 +228,45 @@
     .event-day {
         font-size: 1.4rem;
     }
+}
+.event-card {
+    display: flex;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 14px;
+    overflow: hidden;
+    transition: all 0.4s ease;
+    margin-bottom: 20px;
+}
+
+/* EXTRA CONTENT (HIDDEN BY DEFAULT) */
+.event-extra {
+    max-height: 0;
+    opacity: 0;
+    overflow: hidden;
+    transition: all 0.4s ease;
+    margin-top: 0;
+}
+
+/* EXPANDED STATE */
+.event-card.expanded .event-extra {
+    max-height: 300px;
+    opacity: 1;
+    margin-top: 12px;
+}
+
+/* BUTTON */
+.event-actions button {
+    background: rgba(0, 198, 255, 0.15);
+    border: none;
+    padding: 10px 18px;
+    border-radius: 8px;
+    color: #fff;
+    cursor: pointer;
+    font-weight: 600;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.event-actions button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 25px 45px rgba(0, 0, 0, 0.45);
 }

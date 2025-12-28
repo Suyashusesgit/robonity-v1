@@ -1,12 +1,12 @@
-import React from 'react';
+import React, { useState } from "react";
 
-// Props: date (string like "SEP 06"), title, location, description
-function EventItem({ date, title, location, description }) {
-    // Split date safely (e.g., "SEP 06")
+
+function EventItem({ date, title, location, description, fullDetails }) {
+    const [expanded, setExpanded] = useState(false);
     const [month, day] = date.split(" ");
 
     return (
-        <div className="event-card">
+        <div className={`event-card ${expanded ? "expanded" : ""}`}>
             {/* DATE STRIP */}
             <div className="event-date">
                 <span className="event-month">{month}</span>
@@ -20,9 +20,16 @@ function EventItem({ date, title, location, description }) {
 
                 <p className="event-description">{description}</p>
 
+                {/* EXPANDABLE CONTENT */}
+                <div className="event-extra">
+                    <p>{fullDetails}</p>
+                </div>
+
                 {/* CTA */}
                 <div className="event-actions">
-                    <button>View Details</button>
+                    <button onClick={() => setExpanded(!expanded)}>
+                        {expanded ? "Hide Details" : "View Details"}
+                    </button>
                 </div>
             </div>
         </div>

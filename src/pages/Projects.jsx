@@ -35,9 +35,45 @@ function Projects() {
                     </div>
                 </div>
 
+                <div className="project-card">
+                    <h3>RoboSoccer Team</h3>
+                    <p>
+                        Building a team of AI-powered robots for the upcoming RoboSoccer 2026.
+                    </p>
+                    <div className="project-tags">
+                        <span>AI</span>
+                        <span>Robotics</span>
+                        <span>ML</span>
+                    </div>
+                </div>
+
+                <div className="project-card">
+                    <h3>RoboSoccer Team</h3>
+                    <p>
+                        Building a team of AI-powered robots for the upcoming RoboSoccer 2026.
+                    </p>
+                    <div className="project-tags">
+                        <span>AI</span>
+                        <span>Robotics</span>
+                        <span>ML</span>
+                    </div>
+                </div>
+
+                <div className="project-card">
+                    <h3>RoboSoccer Team</h3>
+                    <p>
+                        Building a team of AI-powered robots for the upcoming RoboSoccer 2026.
+                    </p>
+                    <div className="project-tags">
+                        <span>AI</span>
+                        <span>Robotics</span>
+                        <span>ML</span>
+                    </div>
+                </div>
+
                 {/* ADD PROJECT CTA */}
                 <div className="project-card add-project">
-                    <h3>+ Add Your Project</h3>
+                    <h3>Join Community to showcase your projects!</h3>
                     <p>
                         Share your idea, get collaborators, and build together.
                     </p>
