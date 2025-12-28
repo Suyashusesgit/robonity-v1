@@ -11,7 +11,10 @@ function Events() {
       location: "Online Mode",
       description: "Exclusive online sessions for the Domain Members.",
       fullDetails:
-          "Mode: Online | Eligibility: Domain Members Only | Platform: Google Meet | Certificate Provided"
+          "Mode: Online | Eligibility: Domain Members Only | Platform: Google Meet | Certificate Provided\n"+
+          "Session 1.: Virtual Machine (VM) by Assir Thota (TY ECE)\n" +
+          "Session 2.: Fundamentals of Linux Operating by Anirban Das (TY ECE)\n" +
+          "Session 3.: Robotics Operating System (ROS) by Assir Thota (TY ECE)\n"
     },
     {
       id: 2,

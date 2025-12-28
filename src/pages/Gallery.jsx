@@ -12,63 +12,63 @@ function Gallery() {
             title: 'Autonomous Rover',
             description: 'A student-built rover navigating an obstacle course.',
             category: 'Robotics',
-            imageUrl: 'https://via.placeholder.com/400x250/007bff/ffffff?text=Rover+Project'
+            imageUrl: './Public/KickOff-25 GIF.gif'
         },
         {
             id: 2,
             title: 'RoboSoccer 2025',
             description: 'Our team competing in the finals.',
             category: 'AI',
-            imageUrl: 'https://via.placeholder.com/400x250/28a745/ffffff?text=RoboSoccer'
+            imageUrl: './Public/KickOff-25 GIF.gif'
         },
         {
             id: 3,
             title: '3D Printed Arm',
             description: 'A 6-axis robotic arm prototype.',
             category: 'Mechanical',
-            imageUrl: 'https://via.placeholder.com/400x250/dc3545/ffffff?text=Robotic+Arm'
+            imageUrl: './Public/KickOff-25 GIF.gif'
         },
         {
             id: 4,
             title: 'Workshop Day',
             description: 'Members learning soldering and circuitry.',
             category: 'Robotics',
-            imageUrl: 'https://via.placeholder.com/400x250/ffc107/000000?text=Workshop'
+            imageUrl: './Public/KickOff-25 GIF.gif'
         },
         {
             id: 5,
             title: 'Autonomous Rover',
             description: 'A student-built rover navigating an obstacle course.',
             category: 'Robotics',
-            imageUrl: 'https://via.placeholder.com/400x250/007bff/ffffff?text=Rover+Project'
+            imageUrl: './Public/KickOff-25 GIF.gif'
         },
         {
             id: 6,
             title: 'RoboSoccer 2025',
             description: 'Our team competing in the finals.',
             category: 'AI',
-            imageUrl: 'https://via.placeholder.com/400x250/28a745/ffffff?text=RoboSoccer'
+            imageUrl: './Public/KickOff-25 GIF.gif'
         },
         {
             id: 7,
             title: '3D Printed Arm',
             description: 'A 6-axis robotic arm prototype.',
             category: 'Mechanical',
-            imageUrl: 'https://via.placeholder.com/400x250/dc3545/ffffff?text=Robotic+Arm'
+            imageUrl: './Public/KickOff-25 GIF.gif'
         },
         {
             id: 8,
             title: 'Workshop Day',
             description: 'Members learning soldering and circuitry.',
             category: 'Robotics',
-            imageUrl: 'https://via.placeholder.com/400x250/ffc107/000000?text=Workshop'
+            imageUrl: './Public/KickOff-25 GIF.gif'
         },
         {
             id: 9,
             title: 'Workshop Day',
             description: 'Members learning soldering and circuitry.',
             category: 'Robotics',
-            imageUrl: 'https://via.placeholder.com/400x250/ffc107/000000?text=Workshop'
+            imageUrl: './Public/KickOff-25 GIF.gif'
         }
     ];
 
