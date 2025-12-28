@@ -12,9 +12,9 @@ function Projects() {
             {/* PROJECT GRID */}
             <div className="projects-grid">
                 <div className="project-card">
-                    <h3>Autonomous Mars Rover</h3>
+                    <h3>A-Bot</h3>
                     <p>
-                        A small-scale rover using a Raspberry Pi and AI for navigation.
+                        An autonomous small-scale rover using a Raspberry Pi and AI for navigation.
                     </p>
                     <div className="project-tags">
                         <span>AI</span>
@@ -24,7 +24,7 @@ function Projects() {
                 </div>
 
                 <div className="project-card">
-                    <h3>RoboSoccer Team</h3>
+                    <h3>Swarm Bots</h3>
                     <p>
                         Building a team of AI-powered robots for the upcoming RoboSoccer 2026.
                     </p>
