@@ -1,13 +1,4 @@
 import React, { useState } from "react";
-import {
-  GoogleAuthProvider,
-  GithubAuthProvider,
-  signInWithPopup,
-  signInWithEmailAndPassword,
-  createUserWithEmailAndPassword,
-  updateProfile
-} from "firebase/auth";
-import { auth } from "../firebase";
 import "./Login.css";
 
 function Auth() {
@@ -18,29 +9,18 @@ function Auth() {
   const [displayName, setDisplayName] = useState("");
   const [phone, setPhone] = useState("");
   const [error, setError] = useState("");
+  const [loading, setLoading] = useState(false);
 
   /* =========================
-     SOCIAL AUTH
+     SOCIAL AUTH (PLACEHOLDER)
   ========================= */
 
-  const handleGoogle = async () => {
-    setError("");
-    try {
-      const provider = new GoogleAuthProvider();
-      await signInWithPopup(auth, provider);
-    } catch (err) {
-      setError(err.message);
-    }
+  const handleGoogle = () => {
+    alert("Google login will be handled by backend OAuth");
   };
 
-  const handleGithub = async () => {
-    setError("");
-    try {
-      const provider = new GithubAuthProvider();
-      await signInWithPopup(auth, provider);
-    } catch (err) {
-      setError(err.message);
-    }
+  const handleGithub = () => {
+    alert("GitHub login will be handled by backend OAuth");
   };
 
   /* =========================
@@ -50,21 +30,42 @@ function Auth() {
   const handleEmailAuth = async (e) => {
     e.preventDefault();
     setError("");
+    setLoading(true);
 
     try {
-      if (mode === "login") {
-        await signInWithEmailAndPassword(auth, email, password);
-      } else {
-        const res = await createUserWithEmailAndPassword(auth, email, password);
-        await updateProfile(res.user, { displayName });
+      const endpoint =
+          mode === "login"
+              ? "http://localhost:5000/api/auth/login"
+              : "http://localhost:5000/api/auth/signup";
+
+      const payload =
+          mode === "login"
+              ? { email, password }
+              : { email, password, displayName };
+
+      const res = await fetch(endpoint, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload),
+      });
+
+      const data = await res.json();
+
+      if (!res.ok) {
+        throw new Error(data.message || "Authentication failed");
       }
+
+      console.log("Auth success:", data);
+      alert(`${mode === "login" ? "Login" : "Signup"} successful`);
     } catch (err) {
       setError(err.message);
+    } finally {
+      setLoading(false);
     }
   };
 
   /* =========================
-     OTP PLACEHOLDER (STEP 1)
+     OTP PLACEHOLDER
   ========================= */
 
   const handleSendOtp = () => {
@@ -73,7 +74,7 @@ function Auth() {
       return;
     }
     setError("");
-    alert("OTP sent (logic will be added later)");
+    alert("OTP will be handled by backend");
   };
 
   return (
@@ -141,8 +142,12 @@ function Auth() {
                     minLength={6}
                 />
 
-                <button type="submit" className="auth-submit">
-                  {mode === "login" ? "Log In" : "Create Account"}
+                <button type="submit" className="auth-submit" disabled={loading}>
+                  {loading
+                      ? "Please wait..."
+                      : mode === "login"
+                          ? "Log In"
+                          : "Create Account"}
                 </button>
               </form>
           )}
@@ -175,9 +180,7 @@ function Auth() {
             ) : (
                 <>
                   Already have an account?{" "}
-                  <span onClick={() => setMode("login")}>
-                Log in
-              </span>
+                  <span onClick={() => setMode("login")}>Log in</span>
                 </>
             )}
           </p>

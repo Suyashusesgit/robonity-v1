@@ -1,70 +1,71 @@
 import React, { useState } from "react";
-import {
-  GoogleAuthProvider,
-  GithubAuthProvider,
-  signInWithPopup,
-  signInWithEmailAndPassword,
-  createUserWithEmailAndPassword,
-  updateProfile
-} from "firebase/auth";
-import { auth } from "../firebase";
 import "./Signup.css";
 
 function Auth() {
-  const [mode, setMode] = useState("login"); // login | signup
+  const [mode, setMode] = useState("signup"); // signup | login
   const [method, setMethod] = useState("email"); // email | otp
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [displayName, setDisplayName] = useState("");
   const [phone, setPhone] = useState("");
   const [error, setError] = useState("");
+  const [loading, setLoading] = useState(false);
 
   /* =========================
-     SOCIAL AUTH
+     SOCIAL AUTH (PLACEHOLDER)
   ========================= */
 
-  const handleGoogle = async () => {
-    setError("");
-    try {
-      const provider = new GoogleAuthProvider();
-      await signInWithPopup(auth, provider);
-    } catch (err) {
-      setError(err.message);
-    }
+  const handleGoogle = () => {
+    alert("Google signup will be handled via backend OAuth");
   };
 
-  const handleGithub = async () => {
-    setError("");
-    try {
-      const provider = new GithubAuthProvider();
-      await signInWithPopup(auth, provider);
-    } catch (err) {
-      setError(err.message);
-    }
+  const handleGithub = () => {
+    alert("GitHub signup will be handled via backend OAuth");
   };
 
   /* =========================
-     EMAIL LOGIN / SIGNUP
+     EMAIL SIGNUP / LOGIN
   ========================= */
 
   const handleEmailAuth = async (e) => {
     e.preventDefault();
     setError("");
+    setLoading(true);
 
     try {
-      if (mode === "login") {
-        await signInWithEmailAndPassword(auth, email, password);
-      } else {
-        const res = await createUserWithEmailAndPassword(auth, email, password);
-        await updateProfile(res.user, { displayName });
+      const endpoint =
+          mode === "signup"
+              ? "http://localhost:5000/api/auth/signup"
+              : "http://localhost:5000/api/auth/login";
+
+      const payload =
+          mode === "signup"
+              ? { email, password, displayName }
+              : { email, password };
+
+      const res = await fetch(endpoint, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload),
+      });
+
+      const data = await res.json();
+
+      if (!res.ok) {
+        throw new Error(data.message || "Authentication failed");
       }
+
+      console.log("Auth success:", data);
+      alert(`${mode === "signup" ? "Signup" : "Login"} successful`);
     } catch (err) {
       setError(err.message);
+    } finally {
+      setLoading(false);
     }
   };
 
   /* =========================
-     OTP PLACEHOLDER (STEP 1)
+     OTP PLACEHOLDER
   ========================= */
 
   const handleSendOtp = () => {
@@ -73,13 +74,13 @@ function Auth() {
       return;
     }
     setError("");
-    alert("OTP sent (logic will be added later)");
+    alert("OTP will be handled via backend");
   };
 
   return (
       <div className="auth-page">
         <div className="auth-card">
-          <h1>{mode === "login" ? "Log In" : "Sign Up"}</h1>
+          <h1>{mode === "signup" ? "Sign Up" : "Log In"}</h1>
 
           {error && <p className="auth-error">{error}</p>}
 
@@ -141,8 +142,8 @@ function Auth() {
                     minLength={6}
                 />
 
-                <button type="submit" className="auth-submit">
-                  {mode === "login" ? "Log In" : "Create Account"}
+                <button type="submit" className="auth-submit" disabled={loading}>
+                  {loading ? "Please wait..." : "Create Account"}
                 </button>
               </form>
           )}
@@ -165,21 +166,8 @@ function Auth() {
 
           {/* ================= MODE SWITCH ================= */}
           <p className="switch-text">
-            {mode === "login" ? (
-                <>
-                  New here?{" "}
-                  <span onClick={() => setMode("signup")}>
-                Create an account
-              </span>
-                </>
-            ) : (
-                <>
-                  Already have an account?{" "}
-                  <span onClick={() => setMode("login")}>
-                Log in
-              </span>
-                </>
-            )}
+            Already have an account?{" "}
+            <span onClick={() => setMode("login")}>Log in</span>
           </p>
         </div>
       </div>
