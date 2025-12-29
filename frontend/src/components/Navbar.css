@@ -87,15 +87,15 @@
 /* ===== AUTH BUTTONS ===== */
 .auth-links {
     display: flex;
-    align-items: center; /* CRITICAL */
+    align-items: center;
     gap: 12px;
 }
 
 .btn-login,
 .btn-signup,
 .btn-logout {
-    height: 42px;              /* SAME HEIGHT */
-    padding: 0 18px;           /* Horizontal padding only */
+    height: 42px;
+    padding: 0 18px;
     display: inline-flex;
     align-items: center;
     justify-content: center;
@@ -122,7 +122,7 @@
 .btn-signup {
     color: #fff;
     background: linear-gradient(135deg, #00c6ff, #0072ff);
-    border: 1px solid transparent;   /* IMPORTANT */
+    border: 1px solid transparent;
     box-shadow: 0 0 18px rgba(0, 198, 255, 0.45);
 }
 
@@ -157,8 +157,15 @@
     transition: 0.3s ease;
 }
 
-/* ===== MOBILE VIEW ===== */
+/* =========================
+   TABLET & MOBILE (≤900px)
+========================= */
 @media (max-width: 900px) {
+    .navbar {
+        width: calc(100% - 40px);
+        padding: 12px 20px;
+    }
+
     .menu-icon {
         display: flex;
     }
@@ -169,7 +176,7 @@
         left: 0;
         width: 100%;
         flex-direction: column;
-        padding: 24px;
+        padding: 22px;
         border-radius: 18px;
 
         background: rgba(15, 15, 15, 0.75);
@@ -190,5 +197,37 @@
         pointer-events: auto;
         transform: translateY(0);
     }
+
+    .nav-links li a {
+        font-size: 1rem;
+        padding: 10px 0;
+    }
 }
 
+/* =========================
+   SMALL PHONES (≤480px)
+========================= */
+@media (max-width: 480px) {
+    .navbar {
+        top: 12px;
+        width: calc(100% - 24px);
+        padding: 10px 16px;
+        border-radius: 16px;
+    }
+
+    .logo-text {
+        font-size: 1.2rem;
+    }
+
+    .auth-links {
+        gap: 8px;
+    }
+
+    .btn-login,
+    .btn-signup,
+    .btn-logout {
+        height: 38px;
+        padding: 0 14px;
+        font-size: 0.85rem;
+    }
+}

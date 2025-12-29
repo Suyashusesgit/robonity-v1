@@ -1,12 +1,20 @@
+/* =========================
+   PAGE LAYOUT
+========================= */
 .auth-page {
     min-height: calc(100vh - 120px);
     display: flex;
     align-items: center;
     justify-content: center;
+    padding: 24px; /* mobile safe padding */
 }
 
+/* =========================
+   AUTH CARD
+========================= */
 .auth-card {
     width: 420px;
+    max-width: 100%;
     background: rgba(30, 41, 59, 0.7);
     backdrop-filter: blur(16px);
     padding: 2.5rem;
@@ -19,6 +27,9 @@
     margin-bottom: 1.5rem;
 }
 
+/* =========================
+   ERROR
+========================= */
 .auth-error {
     background: rgba(239, 68, 68, 0.15);
     color: #fecaca;
@@ -27,7 +38,9 @@
     margin-bottom: 1rem;
 }
 
-/* SOCIAL */
+/* =========================
+   SOCIAL AUTH
+========================= */
 .social-auth button {
     width: 100%;
     margin-bottom: 0.6rem;
@@ -50,12 +63,15 @@
     color: #94a3b8;
 }
 
-/* METHOD SWITCH */
+/* =========================
+   METHOD SWITCH
+========================= */
 .method-switch {
     display: flex;
     justify-content: center;
     gap: 1.5rem;
     margin-bottom: 1rem;
+    flex-wrap: wrap;
 }
 
 .method-switch span {
@@ -68,8 +84,11 @@
     font-weight: 600;
 }
 
-/* FORM */
-.auth-card input {
+/* =========================
+   FORM INPUTS
+========================= */
+.auth-card input,
+.auth-input {
     width: 100%;
     padding: 13px;
     margin-bottom: 0.8rem;
@@ -77,25 +96,47 @@
     background: rgba(15, 23, 42, 0.85);
     border: 1px solid rgba(255, 255, 255, 0.1);
     color: #e5e7eb;
+    font-size: 0.95rem;
 }
 
-.auth-card button[type="submit"] {
+/* =========================
+   PRIMARY BUTTON
+========================= */
+.auth-card button[type="submit"],
+.auth-submit {
     width: 100%;
     padding: 14px;
     border-radius: 12px;
     background: linear-gradient(135deg, #0ea5e9, #0284c7);
     border: none;
     font-weight: 600;
+    cursor: pointer;
     margin-top: 0.5rem;
+    box-shadow: 0 10px 30px rgba(14, 165, 233, 0.35);
+    transition: all 0.25s ease;
 }
 
-/* OTP */
+.auth-submit:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 14px 36px rgba(14, 165, 233, 0.5);
+}
+
+/* =========================
+   OTP SECTION
+========================= */
+.otp-box {
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+}
+
 .otp-box input {
     width: 100%;
-    margin-bottom: 0.8rem;
 }
 
-/* SWITCH */
+/* =========================
+   SWITCH TEXT
+========================= */
 .switch-text {
     margin-top: 1.4rem;
     text-align: center;
@@ -106,39 +147,48 @@
     color: #38bdf8;
     cursor: pointer;
 }
-/* OTP SECTION */
-.otp-box {
-    display: flex;
-    flex-direction: column;
-    gap: 0.8rem;
+
+/* =========================
+   TABLET (≤900px)
+========================= */
+@media (max-width: 900px) {
+    .auth-card {
+        padding: 2rem;
+    }
 }
 
-/* Reusable input */
-.auth-input {
-    width: 100%;
-    padding: 13px;
-    border-radius: 10px;
-    background: rgba(15, 23, 42, 0.85);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    color: #e5e7eb;
-    font-size: 0.95rem;
+/* =========================
+   MOBILE (≤600px)
+========================= */
+@media (max-width: 600px) {
+    .auth-page {
+        min-height: auto;
+        padding: 20px;
+    }
+
+    .auth-card {
+        padding: 1.8rem 1.6rem;
+        border-radius: 16px;
+    }
+
+    .auth-card h1 {
+        font-size: 1.5rem;
+    }
+
+    .divider {
+        margin: 1rem 0;
+    }
 }
 
-/* Reusable primary button */
-.auth-submit {
-    width: 100%;
-    padding: 14px;
-    border-radius: 12px;
-    background: linear-gradient(135deg, #0ea5e9, #0284c7);
-    color: #020617;
-    border: none;
-    font-weight: 600;
-    cursor: pointer;
-    box-shadow: 0 10px 30px rgba(14, 165, 233, 0.35);
-    transition: all 0.25s ease;
-}
+/* =========================
+   SMALL PHONES (≤400px)
+========================= */
+@media (max-width: 400px) {
+    .auth-card {
+        padding: 1.5rem 1.3rem;
+    }
 
-.auth-submit:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 14px 36px rgba(14, 165, 233, 0.5);
+    .auth-card h1 {
+        font-size: 1.35rem;
+    }
 }

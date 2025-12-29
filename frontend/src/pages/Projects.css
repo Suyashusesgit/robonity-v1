@@ -1,7 +1,6 @@
 /* =========================
    PAGE LAYOUT
 ========================= */
-
 .page-header {
     font-size: 2.6rem;
     font-weight: 800;
@@ -40,12 +39,10 @@
 .project-card {
     padding: 22px 24px;
     border-radius: 18px;
-
     background: rgba(255, 255, 255, 0.05);
     border: 1px solid rgba(255, 255, 255, 0.14);
     backdrop-filter: blur(14px);
     -webkit-backdrop-filter: blur(14px);
-
     transition: all 0.35s ease;
     cursor: pointer;
 }
@@ -107,14 +104,66 @@
 }
 
 /* =========================
-   RESPONSIVE
+   TABLET (≤900px)
 ========================= */
 @media (max-width: 900px) {
     .projects-page {
         padding: 120px 6% 70px;
     }
 
+    .projects-grid {
+        gap: 22px;
+    }
+
     .page-header {
         font-size: 2.2rem;
+    }
+}
+
+/* =========================
+   MOBILE (≤600px)
+========================= */
+@media (max-width: 600px) {
+    .projects-page {
+        padding: 100px 5% 60px;
+    }
+
+    .page-header {
+        font-size: 1.9rem;
+    }
+
+    .page-subtext {
+        font-size: 0.95rem;
+    }
+
+    .projects-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+
+    .project-card {
+        padding: 20px 18px;
+    }
+
+    .project-card h3 {
+        font-size: 1.2rem;
+    }
+
+    .project-card p {
+        font-size: 0.9rem;
+    }
+}
+
+/* =========================
+   SMALL PHONES (≤400px)
+========================= */
+@media (max-width: 400px) {
+    .page-header {
+        font-size: 1.7rem;
+    }
+
+    .project-tags span {
+        font-size: 0.7rem;
+        padding: 3px 8px;
     }
 }

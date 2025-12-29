@@ -42,7 +42,6 @@
     margin-top: 2.5rem;
     border-radius: 18px;
     overflow: hidden;
-
     background: rgba(255, 255, 255, 0.04);
     border: 1px solid rgba(255, 255, 255, 0.12);
     backdrop-filter: blur(14px);
@@ -55,10 +54,8 @@
     display: flex;
     justify-content: space-between;
     gap: 20px;
-
     padding: 20px 24px;
     border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-
     transition: background 0.25s ease;
 }
 
@@ -98,7 +95,6 @@
     text-align: right;
     font-size: 0.85rem;
     color: #c3d0e0;
-
     display: flex;
     flex-direction: column;
     gap: 6px;
@@ -111,13 +107,11 @@
     margin-bottom: 2rem;
     padding: 10px 18px;
     border-radius: 14px;
-
     background: linear-gradient(135deg, #00c6ff, #0072ff);
     color: #ffffff;
     font-weight: 600;
     border: none;
     cursor: pointer;
-
     box-shadow: 0 0 25px rgba(0, 198, 255, 0.4);
     transition: transform 0.25s ease;
 }
@@ -133,7 +127,6 @@
     margin-top: 3rem;
     padding: 24px;
     border-radius: 18px;
-
     background: rgba(255, 255, 255, 0.04);
     border: 1px solid rgba(255, 255, 255, 0.14);
     backdrop-filter: blur(14px);
@@ -148,11 +141,9 @@
     resize: vertical;
     padding: 14px;
     border-radius: 12px;
-
     background: rgba(0, 0, 0, 0.3);
     border: 1px solid rgba(255, 255, 255, 0.2);
     color: #ffffff;
-
     font-family: inherit;
 }
 
@@ -163,7 +154,6 @@
     margin-top: 1.5rem;
     padding: 16px 18px;
     border-radius: 14px;
-
     background: rgba(255, 255, 255, 0.05);
     border: 1px solid rgba(255, 255, 255, 0.12);
 }
@@ -172,7 +162,6 @@
     display: flex;
     justify-content: space-between;
     margin-bottom: 8px;
-
     font-size: 0.85rem;
     color: #9fb0c5;
 }
@@ -184,7 +173,7 @@
 }
 
 /* =========================
-   RESPONSIVE
+   TABLET (≤900px)
 ========================= */
 @media (max-width: 900px) {
     .forum-page {
@@ -194,11 +183,67 @@
     .thread-item {
         flex-direction: column;
         align-items: flex-start;
+        gap: 14px;
     }
 
     .thread-stats {
+        min-width: auto;
         text-align: left;
         flex-direction: row;
         gap: 16px;
+    }
+}
+
+/* =========================
+   MOBILE (≤600px)
+========================= */
+@media (max-width: 600px) {
+    .forum-page {
+        padding: 88px 5% 60px;
+    }
+
+    .thread-item {
+        padding: 16px 18px;
+    }
+
+    .thread-details a {
+        font-size: 1.05rem;
+        line-height: 1.35;
+    }
+
+    .thread-metadata {
+        font-size: 0.8rem;
+    }
+
+    .thread-stats {
+        font-size: 0.8rem;
+        gap: 12px;
+    }
+
+    .new-thread-btn {
+        width: 100%;
+        text-align: center;
+    }
+
+    .post-reply-form {
+        padding: 18px;
+    }
+
+    .reply-text {
+        font-size: 0.9rem;
+    }
+}
+
+/* =========================
+   SMALL PHONES (≤400px)
+========================= */
+@media (max-width: 400px) {
+    .thread-details a {
+        font-size: 1rem;
+    }
+
+    .reply-header {
+        flex-direction: column;
+        gap: 4px;
     }
 }

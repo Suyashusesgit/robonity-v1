@@ -32,12 +32,10 @@
 .about-card {
     padding: 28px 26px;
     border-radius: 20px;
-
     background: rgba(255, 255, 255, 0.05);
     border: 1px solid rgba(255, 255, 255, 0.14);
     backdrop-filter: blur(16px);
     -webkit-backdrop-filter: blur(16px);
-
     transition: all 0.35s ease;
 }
 
@@ -73,16 +71,13 @@
     margin-top: 4rem;
     padding: 32px 36px;
     border-radius: 22px;
-
     background: linear-gradient(
             135deg,
             rgba(0, 198, 255, 0.18),
             rgba(0, 114, 255, 0.08)
     );
-
     border: 1px solid rgba(0, 198, 255, 0.4);
     color: #ffffff;
-
     max-width: 900px;
 }
 
@@ -100,14 +95,71 @@
 }
 
 /* =========================
-   RESPONSIVE
+   TABLET (≤900px)
 ========================= */
 @media (max-width: 900px) {
     .about-page {
         padding: 96px 6% 70px;
     }
 
+    .about-grid {
+        gap: 22px;
+    }
+
     .about-highlight {
         padding: 28px 24px;
+    }
+}
+
+/* =========================
+   MOBILE (≤600px)
+========================= */
+@media (max-width: 600px) {
+    .about-page {
+        padding: 88px 5% 60px;
+    }
+
+    .about-intro {
+        font-size: 0.95rem;
+    }
+
+    .about-grid {
+        margin-top: 3rem;
+        gap: 20px;
+    }
+
+    .about-card {
+        padding: 22px 20px;
+    }
+
+    .about-card h3 {
+        font-size: 1.15rem;
+    }
+
+    .about-card p {
+        font-size: 0.9rem;
+    }
+
+    .about-highlight {
+        margin-top: 3rem;
+        padding: 22px 20px;
+        border-radius: 18px;
+    }
+
+    .about-highlight p {
+        font-size: 0.95rem;
+    }
+}
+
+/* =========================
+   SMALL PHONES (≤400px)
+========================= */
+@media (max-width: 400px) {
+    .about-card h3 {
+        font-size: 1.05rem;
+    }
+
+    .about-highlight h2 {
+        font-size: 1.3rem;
     }
 }
