@@ -1,43 +1,56 @@
-import React, { useState } from 'react';
-import { db } from '../firebase';
-import { useAuth } from './AuthContext';
-import { collection, addDoc, serverTimestamp, doc, updateDoc, increment } from 'firebase/firestore';
+import React, { useState } from "react";
+import { useAuth } from "./AuthContext";
 
 function PostReply({ threadId }) {
-  const [text, setText] = useState('');
-  const [error, setError] = useState('');
-  const { currentUser } = useAuth();
+  const [text, setText] = useState("");
+  const [error, setError] = useState("");
+  const [submitting, setSubmitting] = useState(false);
+
+  const { currentUser, isAuthenticated } = useAuth();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setError('');
+    setError("");
 
     if (!text.trim()) {
-      setError('Reply cannot be empty.');
+      setError("Reply cannot be empty.");
       return;
     }
 
-    if (!currentUser?.displayName) {
-      setError('You must be logged in with a display name to reply.');
+    if (!isAuthenticated || !currentUser) {
+      setError("You must be logged in to reply.");
       return;
     }
 
     try {
-      await addDoc(collection(db, 'threads', threadId, 'replies'), {
-        text,
-        authorId: currentUser.uid,
-        authorName: currentUser.displayName,
-        createdAt: serverTimestamp(),
-      });
+      setSubmitting(true);
 
-      await updateDoc(doc(db, 'threads', threadId), {
-        replies: increment(1),
-      });
+      const res = await fetch(
+          `http://localhost:5000/api/threads/${threadId}/replies`,
+          {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            credentials: "include", // JWT / session cookie
+            body: JSON.stringify({
+              text: text.trim(),
+            }),
+          }
+      );
 
-      setText('');
+      const data = await res.json();
+
+      if (!res.ok) {
+        throw new Error(data.message || "Failed to post reply.");
+      }
+
+      setText("");
     } catch (err) {
-      setError('Failed to post reply.');
       console.error(err);
+      setError(err.message || "Failed to post reply.");
+    } finally {
+      setSubmitting(false);
     }
   };
 
@@ -52,10 +65,15 @@ function PostReply({ threadId }) {
             value={text}
             onChange={(e) => setText(e.target.value)}
             rows="4"
+            disabled={submitting}
         />
 
-        <button type="submit" className="new-thread-btn">
-          Post Reply
+        <button
+            type="submit"
+            className="new-thread-btn"
+            disabled={submitting}
+        >
+          {submitting ? "Posting…" : "Post Reply"}
         </button>
       </form>
   );

@@ -1,6 +1,4 @@
-import React, { createContext, useContext, useState, useEffect } from 'react';
-import { auth } from '../firebase';
-import { onAuthStateChanged } from 'firebase/auth';
+import React, { createContext, useContext, useEffect, useState } from "react";
 
 const AuthContext = createContext(null);
 
@@ -13,19 +11,34 @@ export function AuthProvider({ children }) {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const unsubscribe = onAuthStateChanged(auth, user => {
-      setCurrentUser(user);
-      setLoading(false);
-    });
+    // Check auth status from backend (JWT / session)
+    const checkAuth = async () => {
+      try {
+        const res = await fetch("http://localhost:5000/api/auth/me", {
+          method: "GET",
+          credentials: "include", // important for cookies / sessions
+        });
 
-    return unsubscribe;
+        if (!res.ok) {
+          setCurrentUser(null);
+        } else {
+          const data = await res.json();
+          setCurrentUser(data.user);
+        }
+      } catch (err) {
+        setCurrentUser(null);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    checkAuth();
   }, []);
 
   const value = {
     currentUser,
     isAuthenticated: !!currentUser,
-    // future:
-    // role: currentUser?.customClaims?.role
+    setCurrentUser, // useful after login/signup
   };
 
   return (

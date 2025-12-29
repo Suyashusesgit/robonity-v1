@@ -1,45 +1,51 @@
-import React, { useState } from 'react';
-import { db } from '../firebase';
-import { useAuth } from './AuthContext';
-import { collection, addDoc, serverTimestamp } from 'firebase/firestore';
+import React, { useState } from "react";
+import { useAuth } from "./AuthContext";
 
 function CreateThread() {
-  const [title, setTitle] = useState('');
-  const [error, setError] = useState('');
+  const [title, setTitle] = useState("");
+  const [error, setError] = useState("");
   const [submitting, setSubmitting] = useState(false);
 
-  const { currentUser } = useAuth();
+  const { currentUser, isAuthenticated } = useAuth();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setError('');
+    setError("");
 
     if (!title.trim()) {
-      setError('Title cannot be empty.');
+      setError("Title cannot be empty.");
       return;
     }
 
-    if (!currentUser?.displayName) {
-      setError('You must be logged in with a display name to post.');
+    if (!isAuthenticated || !currentUser) {
+      setError("You must be logged in to post.");
       return;
     }
 
     try {
       setSubmitting(true);
 
-      await addDoc(collection(db, 'threads'), {
-        title: title.trim(),
-        authorId: currentUser.uid,
-        authorName: currentUser.displayName,
-        createdAt: serverTimestamp(),
-        replies: 0,
-        views: 0,
+      const res = await fetch("http://localhost:5000/api/threads", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        credentials: "include", // important for JWT cookies
+        body: JSON.stringify({
+          title: title.trim(),
+        }),
       });
 
-      setTitle('');
+      const data = await res.json();
+
+      if (!res.ok) {
+        throw new Error(data.message || "Failed to create thread.");
+      }
+
+      setTitle("");
     } catch (err) {
       console.error(err);
-      setError('Failed to create thread. Please try again.');
+      setError(err.message || "Failed to create thread. Please try again.");
     } finally {
       setSubmitting(false);
     }
@@ -66,7 +72,7 @@ function CreateThread() {
               className="new-thread-btn"
               disabled={submitting}
           >
-            {submitting ? 'Posting…' : 'Post Thread'}
+            {submitting ? "Posting…" : "Post Thread"}
           </button>
         </div>
       </form>
